@@ -36,7 +36,7 @@ function load() {
     $(e.target).addClass('active')
 
     if (!wave) {
-      wave = new CreateWave('#wave', url, '#02c7e1', '#4cf2a6')
+      wave = new CreateWave('#wave', url, '#00000033', '#f50')
 
       wave.init()
     } else {
@@ -80,7 +80,10 @@ function load() {
   }
 
   function transformVocie() {
-    $('#out-wave>i').css('display','block');
+    if (wave1){
+      wave1.destroy();
+    }
+    $('#out-wave>i').css('zIndex','3');
     $.ajax({
       type: 'GET',
       url: `${baseUrl}/api/noises/${id}/denoise`,
@@ -90,7 +93,7 @@ function load() {
         'Access-Control-Allow-Origin': '*'
       },
       success: function(data) {
-        $('#out-wave>i').css('display','none');
+        $('#out-wave>i').css('zIndex','-1');
         var url = baseUrl + data
         addTransfrom(url)
       },
@@ -100,6 +103,10 @@ function load() {
   }
 
   function transformVocieFromAi(){
+
+    if (wave1){
+      wave1.destroy();
+    }
     $('#out-wave>i').css('zIndex','3');
     $.ajax({
       type: 'GET',
@@ -152,11 +159,11 @@ function load() {
 
   function addTransfrom(url) {
     if (!wave1) {
-      wave1 = new CreateWave('#out-wave', url, '#4cadfb', '#0f0')
+      wave1 = new CreateWave('#out-wave', url,'#00000033','#4cadfb')
 
       wave1.init()
     } else {
-      wave1.reLoad(url)
+      wave1.reLoad(url,'#00000033','#4cadfb')
       $('#playOut').attr('class', 'iconfont icon-play')
     }
 
@@ -167,11 +174,11 @@ function load() {
 
   function addTransfromAi(url){
     if (!wave1) {
-      wave1 = new CreateWave('#out-wave', url, '#4cadfb', '#0f0')
+      wave1 = new CreateWave('#out-wave', url, '#00000033', '#000')
 
       wave1.init()
     } else {
-      wave1.reLoad(url)
+      wave1.reLoad(url, '#00000033', '#000')
       $('#playOut').attr('class', 'iconfont icon-play')
     }
 
@@ -230,7 +237,9 @@ CreateWave.prototype = {
   destroy() {
     this.Wave.destroy()
   },
-  reLoad(url) {
+  reLoad(url,waveColor,progressColor) {
+    this.waveColor = waveColor
+    this.progressColor = progressColor
     this.url = url
     this.destroy()
     this.init()

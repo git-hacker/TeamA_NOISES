@@ -10,7 +10,7 @@
   padding-top: 40px;
   overflow-y: auto;
   /* background: red; */
-  background: #0a0c0b;
+  background: #f2f2f2;
   border-right: 1px solid #fff;
   color: #fff;
 }
@@ -20,13 +20,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 3px -2px rgba(0, 0, 0, 0.14),
+    0 1px 8px 0 rgba(0, 0, 0, 0.12);
+  margin-bottom: 4px;
+  background-color: rgba(0,0,0,0.87);
 }
 .header div {
   font-size: 30px;
+  color: #fff;
 }
 .container {
   width: 100vw;
-  height: 92vh;
+  height: calc(92vh - 4px);
   display: flex;
   align-items: center;
 }
@@ -34,10 +39,10 @@
   flex: 1;
   height: 100%;
   padding: 30px;
-  background: #0a0c0b;
+  background: #fff;
 }
 .content p {
-  color: #fff;
+  color: rgba(0,0,0.85);
   line-height: 30px;
 }
 .item {
@@ -45,12 +50,14 @@
   height: 40px;
   line-height: 40px;
   padding-left: 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.655);
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
   cursor: pointer;
   padding-left: 20px;
 }
 .item.active {
-  background: rgba(156, 151, 151, 0.3);
+  background: rgba(161, 194, 260, 0.16);
+  color: #f50;
 }
 .item i {
   margin-right: 5px;
@@ -62,7 +69,8 @@
 #out-wave {
   width: 100%;
   height: 240px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  /* border: 1px solid rgba(0, 0, 0, 0.1); */
+  /* background: rgba(0,0,0,0.4); */
   /* padding:5px; */
 }
 .wave-control {
@@ -71,41 +79,55 @@
   padding: 10px 0;
   display: flex;
   justify-content: center;
+  font-size: 0;
 }
 .wave-control i {
   font-size: 30px;
-  color: #ebefec;
+  color: #fff;
   cursor: pointer;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  border:1px solid #f50;
+  border-radius: 20px;
+  background-color: #f50;
+  transition:all .3s  ease;
+}
+.icon-play:before{
+  margin-left: 4px;
 }
 
 .wave-control i:hover {
-  color: #fff;
+  /* color: #fff; */
+  transform: scale(1.1);
 }
 
 .wave-control i:first-child + i {
   margin: 0 30px;
 }
-#out-wave{
+#out-wave {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-#out-wave>i {
+#out-wave > i {
   font-size: 50px;
-  color: #fff;
-  animation: mymove  2s linear infinite;
+  color: #f50;
+  animation: mymove 2s linear infinite;
   display: block;
   width: 50px;
   height: 50px;
   position: absolute;
   z-index: -1;
-  left:50%;
-  right:50%;
-  transform: translate(-50%,-50%);
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
   /* display: none; */
 }
-#out-wave>wave{
+#out-wave > wave {
   width: 100%;
 }
 
