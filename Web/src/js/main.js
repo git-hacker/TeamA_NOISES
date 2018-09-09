@@ -18,6 +18,8 @@ function load() {
 
   $('#playOut').bind('click', playOut)
 
+  $('#ai').bind('click', transformVocieFromAi)
+
   function createWave(e) {
     if (
       $(e.target)
@@ -50,6 +52,7 @@ function load() {
     })
   }
 
+
   function playIn() {
     if (wave) {
       wave.playOrPause()
@@ -77,6 +80,7 @@ function load() {
   }
 
   function transformVocie() {
+    $('#out-wave>i').css('display','block');
     $.ajax({
       type: 'GET',
       url: `${baseUrl}/api/noises/${id}/denoise`,
@@ -86,10 +90,33 @@ function load() {
         'Access-Control-Allow-Origin': '*'
       },
       success: function(data) {
+        $('#out-wave>i').css('display','none');
         var url = baseUrl + data
         addTransfrom(url)
       },
       error: function() {
+      }
+    })
+  }
+
+  function transformVocieFromAi(){
+    $('#out-wave>i').css('zIndex','3');
+    $.ajax({
+      type: 'GET',
+      url: `${baseUrl}/api/noises/${id}/transform`,
+      crossDomain: true,
+      dataType: 'json',
+      xhrFields: {
+        'Access-Control-Allow-Origin': '*'
+      },
+      success: function(data) {
+        $('#out-wave>i').css('zIndex','-1');
+        var url = baseUrl + data
+        addTransfromAi(url)
+      },
+      error: function() {
+        $('#out-wave>i').css('zIndex','-1');
+        alert('失败了')
       }
     })
   }
@@ -124,6 +151,21 @@ function load() {
   }
 
   function addTransfrom(url) {
+    if (!wave1) {
+      wave1 = new CreateWave('#out-wave', url, '#4cadfb', '#0f0')
+
+      wave1.init()
+    } else {
+      wave1.reLoad(url)
+      $('#playOut').attr('class', 'iconfont icon-play')
+    }
+
+    wave1.finish(function() {
+      $('#playOut').attr('class', 'iconfont icon-play')
+    })
+  }
+
+  function addTransfromAi(url){
     if (!wave1) {
       wave1 = new CreateWave('#out-wave', url, '#4cadfb', '#0f0')
 
