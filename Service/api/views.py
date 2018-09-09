@@ -1,4 +1,5 @@
 import os
+from time import sleep
 
 import librosa
 import numpy as np
@@ -91,7 +92,7 @@ class AudioViewset(viewsets.ModelViewSet):
             audio.denoised.save(filename, File(f))
             f.close()
             return Response(audio.denoised.url)
-
+        sleep(1.5)
         return Response(audio.denoised.url)
 
     @action(detail=True)
@@ -112,8 +113,12 @@ class AudioViewset(viewsets.ModelViewSet):
             audio.transformed.save(filename, File(f))
             f.close()
             return Response(audio.transformed.url)
-
+        sleep(3)
         return Response(audio.transformed.url)
+
+
+def normalize(vec):
+    return vec / np.max(np.abs(vec), axis=0)
 
 
 def transform(wave):
@@ -137,4 +142,4 @@ def transform(wave):
     print("[TRANSFORM] Denoising transformed audio data...\n")
     denoised = denoise(output)
     print("[TRANSFORM] Transformation complete!\n")
-    return output, denoised
+    return normalize(output), normalize(denoised)
