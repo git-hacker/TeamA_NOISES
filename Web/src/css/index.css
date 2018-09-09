@@ -69,6 +69,7 @@
 #out-wave {
   width: 100%;
   height: 240px;
+  position: relative;
   /* border: 1px solid rgba(0, 0, 0, 0.1); */
   /* background: rgba(0,0,0,0.4); */
   /* padding:5px; */
@@ -137,5 +138,33 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+.wave-transform-modal,.wave-modal{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right:0;
+  top:0;
+  background: #fff;
+  animation-fill-mode:forwards;
+  z-index: 8;
+}
+
+.wave-transform-modal.active,.wave-modal.active{
+  /* width: 0; */
+  /* animation:  mywidth 2s ease; */
+  animation-name:mywidth;
+  animation-duration:2s;
+  animation-timing-function:linear;
+}
+
+
+@keyframes mywidth {
+  from {
+    width: 100%
+  }
+  to {
+    width: 0;
   }
 }

@@ -28,6 +28,8 @@ function load() {
     )
       return
 
+    $('#wave-modal').removeClass('active');
+    $('#wave-modal').addClass('active');
     const url = $(e.target).attr('data-url')
 
     id = $(e.target).attr('data-id')
@@ -83,7 +85,8 @@ function load() {
     if (wave1){
       wave1.destroy();
     }
-    $('#out-wave>i').css('zIndex','3');
+    $('#out-wave>i').css('zIndex','10');
+    $('#wave-transform-modal').removeClass('active');
     $.ajax({
       type: 'GET',
       url: `${baseUrl}/api/noises/${id}/denoise`,
@@ -94,6 +97,8 @@ function load() {
       },
       success: function(data) {
         $('#out-wave>i').css('zIndex','-1');
+        $('#wave-transform-modal').addClass('active');
+        // $('#wave-modal').addClass('active');
         var url = baseUrl + data
         addTransfrom(url)
       },
@@ -107,7 +112,8 @@ function load() {
     if (wave1){
       wave1.destroy();
     }
-    $('#out-wave>i').css('zIndex','3');
+    $('#out-wave>i').css('zIndex','10');
+    $('#wave-transform-modal').removeClass('active');
     $.ajax({
       type: 'GET',
       url: `${baseUrl}/api/noises/${id}/transform`,
@@ -118,6 +124,7 @@ function load() {
       },
       success: function(data) {
         $('#out-wave>i').css('zIndex','-1');
+        $('#wave-transform-modal').addClass('active');
         var url = baseUrl + data
         addTransfromAi(url)
       },
