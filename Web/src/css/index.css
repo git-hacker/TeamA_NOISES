@@ -1,86 +1,119 @@
-*{
-  padding:0;
-  margin:0;
+* {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
   font-family: 'Courier New';
 }
-.sideBar{
+.sideBar {
   width: 200px;
   height: 100%;
   padding-top: 40px;
   overflow-y: auto;
   /* background: red; */
   background: #0a0c0b;
-  border-right:1px solid #fff;
+  border-right: 1px solid #fff;
   color: #fff;
 }
-.header{
+.header {
   width: 100%;
   height: 8vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.header div{
+.header div {
   font-size: 30px;
 }
-.container{
+.container {
   width: 100vw;
   height: 92vh;
   display: flex;
   align-items: center;
 }
-.content{
-  flex:1;
+.content {
+  flex: 1;
   height: 100%;
-  padding:30px;
+  padding: 30px;
   background: #0a0c0b;
 }
-.content p{
+.content p {
   color: #fff;
   line-height: 30px;
 }
-.item{
+.item {
   width: 100%;
   height: 40px;
   line-height: 40px;
   padding-left: 20px;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   cursor: pointer;
   padding-left: 20px;
 }
-.item.active{
-  background:rgba(156, 151, 151, 0.3);
+.item.active {
+  background: rgba(156, 151, 151, 0.3);
 }
-.item i{
+.item i {
   margin-right: 5px;
 }
-.wave-content{
+.wave-content {
   width: 100%;
 }
-#wave,#out-wave{
+#wave,
+#out-wave {
   width: 100%;
   height: 240px;
-  border:1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   /* padding:5px; */
 }
-.wave-control{
+.wave-control {
   width: 200px;
   margin: 0 auto;
   padding: 10px 0;
   display: flex;
   justify-content: center;
 }
-.wave-control i{
+.wave-control i {
   font-size: 30px;
   color: #ebefec;
   cursor: pointer;
 }
 
-.wave-control i:hover{
+.wave-control i:hover {
   color: #fff;
 }
 
-.wave-control i:first-child + i{
+.wave-control i:first-child + i {
   margin: 0 30px;
+}
+#out-wave{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+#out-wave>i {
+  font-size: 50px;
+  color: #fff;
+  animation: mymove  2s linear infinite;
+  display: block;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  z-index: -1;
+  left:50%;
+  right:50%;
+  transform: translate(-50%,-50%);
+  /* display: none; */
+}
+#out-wave>wave{
+  width: 100%;
+}
+
+@keyframes mymove {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
