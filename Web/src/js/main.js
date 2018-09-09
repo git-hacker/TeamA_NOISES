@@ -5,7 +5,7 @@ function load() {
     transformWave = null,
     sWave = null,
     id = '',
-    baseUrl = 'http://192.168.15.112:60000',
+    baseUrl = 'http://localhost:60000',
     wave1 = null
 
   getList()
